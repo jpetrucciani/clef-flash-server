@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-04T22:55:21.415123+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 24,
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "quantization": "nf4",
+  "input_tokens": 512,
+  "questions": 3,
+  "warmup_requests": 3,
+  "concurrent_warmup_requests_per_client": 3,
+  "max_queued_requests": 4,
+  "max_batch_size": 1,
+  "max_batch_tokens": 16384,
+  "batch_wait_ms": 0.0,
+  "fast_kernels": true,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "client_location": "HTTP clients and the real Uvicorn server run in separate threads in one process on localhost.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 2.0362757109105587,
+      "requests_per_second": 11.78622318746215,
+      "p50_ms": 84.14250798523426,
+      "p95_ms": 90.94656830420718,
+      "peak_allocated_mib": 7932.70068359375,
+      "peak_reserved_mib": 8000.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 24,
+          "p50_ms": 84.14250798523426,
+          "p95_ms": 90.94656830420718
+        }
+      ],
+      "gpu_batches": 24,
+      "largest_batch": 1
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 1.9650384669657797,
+      "requests_per_second": 12.213501365730746,
+      "p50_ms": 325.49865439068526,
+      "p95_ms": 332.31318765319884,
+      "peak_allocated_mib": 7932.70068359375,
+      "peak_reserved_mib": 8000.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 24,
+          "p50_ms": 325.49865439068526,
+          "p95_ms": 332.31318765319884
+        }
+      ],
+      "gpu_batches": 24,
+      "largest_batch": 1
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-04T21:52:08.549755+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 24,
+  "server_sha256": "f87fbfa89ad12ae18960bc2e24282eb7c6ed6637794a671d89313b3e274f6075",
+  "quantization": "nf4",
+  "input_tokens": 512,
+  "questions": 3,
+  "warmup_requests": 3,
+  "max_queued_requests": 4,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 4.842573400121182,
+      "requests_per_second": 4.9560425866543225,
+      "p50_ms": 197.45843659620732,
+      "p95_ms": 224.0307285101153,
+      "peak_allocated_mib": 7933.70068359375,
+      "peak_reserved_mib": 8024.0
+    },
+    {
+      "concurrency": 2,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 4.841776034096256,
+      "requests_per_second": 4.956858770622531,
+      "p50_ms": 399.38224747311324,
+      "p95_ms": 440.0830202503129,
+      "peak_allocated_mib": 7933.70068359375,
+      "peak_reserved_mib": 8024.0
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 4.8115899548865855,
+      "requests_per_second": 4.987956210945599,
+      "p50_ms": 799.8781038913876,
+      "p95_ms": 831.4739935332909,
+      "peak_allocated_mib": 7933.70068359375,
+      "peak_reserved_mib": 8024.0
+    },
+    {
+      "concurrency": 8,
+      "successful_requests": 24,
+      "queue_rejections": 12,
+      "wall_seconds": 4.939056589035317,
+      "requests_per_second": 4.85922758068411,
+      "p50_ms": 1010.4487545322627,
+      "p95_ms": 4711.890184658113,
+      "peak_allocated_mib": 7933.70068359375,
+      "peak_reserved_mib": 8024.0
+    }
+  ],
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6"
+}

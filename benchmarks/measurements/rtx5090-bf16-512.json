@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-04T22:02:37.443172+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 24,
+  "server_sha256": "f87fbfa89ad12ae18960bc2e24282eb7c6ed6637794a671d89313b3e274f6075",
+  "quantization": "bf16",
+  "input_tokens": 512,
+  "questions": 3,
+  "warmup_requests": 3,
+  "max_queued_requests": 4,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 4.529400784056634,
+      "requests_per_second": 5.298714144369679,
+      "p50_ms": 186.32763996720314,
+      "p95_ms": 203.9063067175448,
+      "peak_allocated_mib": 18324.14892578125,
+      "peak_reserved_mib": 18344.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 24,
+          "p50_ms": 186.32763996720314,
+          "p95_ms": 203.9063067175448
+        }
+      ]
+    },
+    {
+      "concurrency": 2,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 4.4672437340486795,
+      "requests_per_second": 5.372440240293026,
+      "p50_ms": 371.68799503706396,
+      "p95_ms": 378.0694210785441,
+      "peak_allocated_mib": 18324.14892578125,
+      "peak_reserved_mib": 18344.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 24,
+          "p50_ms": 371.68799503706396,
+          "p95_ms": 378.0694210785441
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 4.406299937982112,
+      "requests_per_second": 5.446746780245497,
+      "p50_ms": 725.9406624361873,
+      "p95_ms": 764.285316830501,
+      "peak_allocated_mib": 18324.14892578125,
+      "peak_reserved_mib": 18344.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 24,
+          "p50_ms": 725.9406624361873,
+          "p95_ms": 764.285316830501
+        }
+      ]
+    }
+  ],
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6"
+}

@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-04T21:55:59.264189+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 24,
+  "server_sha256": "f87fbfa89ad12ae18960bc2e24282eb7c6ed6637794a671d89313b3e274f6075",
+  "quantization": "nf4",
+  "input_tokens": 4096,
+  "questions": 3,
+  "warmup_requests": 3,
+  "max_queued_requests": 4,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 18.22464521508664,
+      "requests_per_second": 1.3168980639542127,
+      "p50_ms": 757.9835400683805,
+      "p95_ms": 773.0825178558007,
+      "peak_allocated_mib": 8660.90380859375,
+      "peak_reserved_mib": 9178.0
+    },
+    {
+      "concurrency": 2,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 18.349844412179664,
+      "requests_per_second": 1.307912997020839,
+      "p50_ms": 1510.8263934962451,
+      "p95_ms": 1664.302847580984,
+      "peak_allocated_mib": 8660.90380859375,
+      "peak_reserved_mib": 9178.0
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 18.165604314999655,
+      "requests_per_second": 1.3211781773856421,
+      "p50_ms": 3020.1198315480724,
+      "p95_ms": 3072.226255084388,
+      "peak_allocated_mib": 8660.90380859375,
+      "peak_reserved_mib": 9178.0
+    },
+    {
+      "concurrency": 8,
+      "successful_requests": 24,
+      "queue_rejections": 42,
+      "wall_seconds": 18.121030115988106,
+      "requests_per_second": 1.3244280179648786,
+      "p50_ms": 3786.7143873590976,
+      "p95_ms": 17261.45485874731,
+      "peak_allocated_mib": 8660.90380859375,
+      "peak_reserved_mib": 9178.0
+    }
+  ],
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6"
+}

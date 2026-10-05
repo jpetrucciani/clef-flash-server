@@ -1,0 +1,29 @@
+[project]
+name = "clef-flash-server"
+version = "0.1.0"
+description = "Cloudflare Clef-Flash SystemOne decision server"
+requires-python = ">=3.12,<3.15,!=3.14.1"
+dependencies = [
+  "accelerate==1.15.0",
+  "bitsandbytes==0.50.2",
+  "causal-conv1d==1.7.0",
+  "fastapi>=0.136,<1",
+  "flash-linear-attention==0.5.2",
+  "huggingface-hub>=1.0,<2",
+  "pillow>=12,<13",
+  "safetensors>=0.7,<1",
+  "torch==2.13.0",
+  "torchvision==0.28.0",
+  "transformers==5.12.1",
+  "uvicorn>=0.38,<1",
+]
+
+[project.scripts]
+clef-flash-server = "clef_flash_server.server:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["clef_flash_server*"]

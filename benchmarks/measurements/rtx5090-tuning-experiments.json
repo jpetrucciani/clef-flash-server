@@ -1,0 +1,341 @@
+{
+  "date": "2026-10-05T04:35:45.856797+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "model_revision": "17f0b0ad64efb65d273590632833508766b2aae6",
+  "scope": "Local, warmed prototype experiments. Full model comparisons use three choice/score/noul questions and synthetic neutral text. BLAS and projection-fusion comparisons run A/B/B/A with three samples per block. CUDA graph runs use six replay samples and capture only the unpadded text backbone. The compile experiment measures only one real NF4 gate projection and is not an end-to-end speed measurement. None of these prototype paths are enabled in the server.",
+  "experiments": {
+    "blas_preference": [
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "backend": "cublas",
+        "median_ms": 76.42771420069039,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "backend": "cublaslt",
+        "median_ms": 76.44825498573482,
+        "max_probability_difference": 0.0040999999999999925
+      },
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "backend": "cublaslt",
+        "median_ms": 75.37592807784677,
+        "max_probability_difference": 0.0040999999999999925
+      },
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "backend": "cublas",
+        "median_ms": 76.18957990780473,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "backend": "cublas",
+        "median_ms": 206.42169914208353,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "backend": "cublaslt",
+        "median_ms": 211.27796592190862,
+        "max_probability_difference": 0.0010000000000000009
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "backend": "cublaslt",
+        "median_ms": 207.261597039178,
+        "max_probability_difference": 0.0010000000000000009
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "backend": "cublas",
+        "median_ms": 209.3656591605395,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "backend": "cublas",
+        "median_ms": 370.6477500963956,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "backend": "cublaslt",
+        "median_ms": 383.604978909716,
+        "max_probability_difference": 0.0029000000000000137
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "backend": "cublaslt",
+        "median_ms": 382.4371201917529,
+        "max_probability_difference": 0.0029000000000000137
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "backend": "cublas",
+        "median_ms": 365.6118100043386,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 4,
+        "backend": "cublas",
+        "median_ms": 1449.2873419076204,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 4,
+        "backend": "cublaslt",
+        "median_ms": 1559.7711210139096,
+        "max_probability_difference": 0.0020999999999999908
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 4,
+        "backend": "cublaslt",
+        "median_ms": 1638.1975151598454,
+        "max_probability_difference": 0.0020999999999999908
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 4,
+        "backend": "cublas",
+        "median_ms": 1477.896112948656,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "backend": "cublas",
+        "median_ms": 1520.5595009028912,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "backend": "cublaslt",
+        "median_ms": 1733.6971298791468,
+        "max_probability_difference": 0.0025999999999999357
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "backend": "cublaslt",
+        "median_ms": 1696.3597228750587,
+        "max_probability_difference": 0.0025999999999999357
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "backend": "cublas",
+        "median_ms": 1531.1139300465584,
+        "max_probability_difference": 0
+      }
+    ],
+    "backbone_cuda_graph": [
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "eager_ms": 76.16044604219496,
+        "graph_ms": 64.36347495764494,
+        "peak_reserved_mib": 8314.0,
+        "peak_allocated_mib": 7995.95556640625,
+        "max_probability_difference": 0.0029000000000000137
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "eager_ms": 205.2437129896134,
+        "graph_ms": 194.85266401898116,
+        "peak_reserved_mib": 8806.0,
+        "peak_allocated_mib": 8168.49072265625,
+        "max_probability_difference": 0.0030000000000000027
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "eager_ms": 358.16975543275476,
+        "graph_ms": 382.4945059604943,
+        "peak_reserved_mib": 9558.0,
+        "peak_allocated_mib": 8497.43994140625,
+        "max_probability_difference": 0.009700000000000042
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "eager_ms": 1504.0315295336768,
+        "graph_ms": 1910.455235047266,
+        "peak_reserved_mib": 14606.0,
+        "peak_allocated_mib": 10461.06494140625,
+        "max_probability_difference": 0.0020999999999999977
+      }
+    ],
+    "nf4_mlp_projection_fusion": [
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "mode": "original",
+        "median_ms": 75.90924692340195,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "mode": "fused",
+        "median_ms": 76.03181898593903,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "mode": "fused",
+        "median_ms": 76.17973908782005,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 1,
+        "mode": "original",
+        "median_ms": 76.72131480649114,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "mode": "original",
+        "median_ms": 204.51126992702484,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "mode": "fused",
+        "median_ms": 201.71137293800712,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "mode": "fused",
+        "median_ms": 205.4262130986899,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 512,
+        "batch_size": 4,
+        "mode": "original",
+        "median_ms": 205.7664890307933,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "mode": "original",
+        "median_ms": 370.80641300417483,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "mode": "fused",
+        "median_ms": 372.24236014299095,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "mode": "fused",
+        "median_ms": 370.4008699860424,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 4096,
+        "batch_size": 1,
+        "mode": "original",
+        "median_ms": 370.0838030781597,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "mode": "original",
+        "median_ms": 1507.0630200207233,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "mode": "fused",
+        "median_ms": 1501.4123001601547,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "mode": "fused",
+        "median_ms": 1530.717917950824,
+        "max_probability_difference": 0
+      },
+      {
+        "tokens": 16384,
+        "batch_size": 1,
+        "mode": "original",
+        "median_ms": 1497.8720240760595,
+        "max_probability_difference": 0
+      }
+    ],
+    "compiled_nf4_gate_projection": [
+      {
+        "tokens": 512,
+        "mode": "original",
+        "median_ms": 0.44106144923716784,
+        "max_abs_error": 0.0
+      },
+      {
+        "tokens": 512,
+        "mode": "explicit",
+        "median_ms": 0.42358587961643934,
+        "max_abs_error": 0.0
+      },
+      {
+        "tokens": 512,
+        "mode": "compiled",
+        "median_ms": 0.48831698950380087,
+        "max_abs_error": 0.0
+      },
+      {
+        "tokens": 16384,
+        "mode": "original",
+        "median_ms": 7.703301846049726,
+        "max_abs_error": 0.0
+      },
+      {
+        "tokens": 16384,
+        "mode": "explicit",
+        "median_ms": 7.781548425555229,
+        "max_abs_error": 0.0
+      },
+      {
+        "tokens": 16384,
+        "mode": "compiled",
+        "median_ms": 7.809975417330861,
+        "max_abs_error": 0.0
+      }
+    ]
+  }
+}

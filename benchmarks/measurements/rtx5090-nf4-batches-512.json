@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-04T22:03:33.300276+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6",
+  "quantization": "nf4",
+  "input_tokens": 512,
+  "questions": 3,
+  "workload": "Identical synthetic records; measures encoding, collation, backbone and joint head plus probability readback. This is an upstream batching experiment, not an HTTP throughput measurement or accuracy evaluation.",
+  "memory_budget_mib": 26203.8,
+  "measurements": [
+    {
+      "batch_size": 1,
+      "iterations": 8,
+      "median_ms": 188.48744605202228,
+      "requests_per_second": 5.305393122701664,
+      "peak_allocated_mib": 7933.70068359375,
+      "peak_reserved_mib": 8024.0,
+      "max_probability_difference": 0.0
+    },
+    {
+      "batch_size": 2,
+      "iterations": 8,
+      "median_ms": 247.82067607156932,
+      "requests_per_second": 8.070351641775082,
+      "peak_allocated_mib": 8013.52294921875,
+      "peak_reserved_mib": 8234.0,
+      "max_probability_difference": 0.003893733024597168
+    },
+    {
+      "batch_size": 4,
+      "iterations": 8,
+      "median_ms": 356.74945544451475,
+      "requests_per_second": 11.212350681841812,
+      "peak_allocated_mib": 8236.97802734375,
+      "peak_reserved_mib": 8462.0,
+      "max_probability_difference": 0.0011268258094787598
+    },
+    {
+      "batch_size": 8,
+      "iterations": 8,
+      "median_ms": 595.9541164338589,
+      "requests_per_second": 13.423852238610838,
+      "peak_allocated_mib": 8685.37646484375,
+      "peak_reserved_mib": 9176.0,
+      "max_probability_difference": 0.0038969218730926514
+    }
+  ],
+  "skipped_batch_sizes": []
+}

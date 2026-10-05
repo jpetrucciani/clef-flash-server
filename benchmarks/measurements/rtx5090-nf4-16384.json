@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-04T22:00:10.825732+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 24,
+  "server_sha256": "f87fbfa89ad12ae18960bc2e24282eb7c6ed6637794a671d89313b3e274f6075",
+  "quantization": "nf4",
+  "input_tokens": 16384,
+  "questions": 3,
+  "warmup_requests": 3,
+  "max_queued_requests": 4,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 12,
+      "queue_rejections": 0,
+      "wall_seconds": 36.409592748153955,
+      "requests_per_second": 0.3295834722185522,
+      "p50_ms": 3021.786048077047,
+      "p95_ms": 3126.302035525441,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14238.0
+    },
+    {
+      "concurrency": 2,
+      "successful_requests": 12,
+      "queue_rejections": 0,
+      "wall_seconds": 35.89244791911915,
+      "requests_per_second": 0.33433217001640764,
+      "p50_ms": 5974.359842133708,
+      "p95_ms": 6040.347473963629,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14238.0
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 12,
+      "queue_rejections": 0,
+      "wall_seconds": 36.085730710066855,
+      "requests_per_second": 0.33254141634029194,
+      "p50_ms": 11969.4709420437,
+      "p95_ms": 12149.060024507344,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14238.0
+    },
+    {
+      "concurrency": 8,
+      "successful_requests": 12,
+      "queue_rejections": 57,
+      "wall_seconds": 36.168184554204345,
+      "requests_per_second": 0.3317833103294389,
+      "p50_ms": 15122.632095590234,
+      "p95_ms": 33129.024258523714,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14238.0
+    }
+  ],
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6"
+}

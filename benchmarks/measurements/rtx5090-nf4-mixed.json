@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-04T22:17:45.786211+00:00",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 24,
+  "model_directory": "17f0b0ad64efb65d273590632833508766b2aae6",
+  "server_sha256": "f87fbfa89ad12ae18960bc2e24282eb7c6ed6637794a671d89313b3e274f6075",
+  "quantization": "nf4",
+  "input_tokens": [512, 4096, 512, 16384],
+  "questions": 3,
+  "warmup_requests": 3,
+  "max_queued_requests": 4,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "client_location": "HTTP clients and the real Uvicorn server run in separate threads in one process on localhost.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 25.47223832202144,
+      "requests_per_second": 0.9422022398106785,
+      "p50_ms": 526.5402974328026,
+      "p95_ms": 3111.626814911142,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14432.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 197.09554547443986,
+          "p95_ms": 311.0135435941629
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 749.4011094095185,
+          "p95_ms": 819.8587549850345
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 3012.5563939800486,
+          "p95_ms": 3149.0138209192082
+        }
+      ]
+    },
+    {
+      "concurrency": 2,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 24.90827061398886,
+      "requests_per_second": 0.9635353803535938,
+      "p50_ms": 966.7533480096608,
+      "p95_ms": 3215.636894607451,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14432.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 955.8617665898055,
+          "p95_ms": 3218.4045279049315
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 954.2481055250391,
+          "p95_ms": 970.1890774886124
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 3199.316446087323,
+          "p95_ms": 3212.9016151302494
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 25.155605270061642,
+      "requests_per_second": 0.9540617187439748,
+      "p50_ms": 4183.936754474416,
+      "p95_ms": 4316.922902700026,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14432.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 4181.487771566026,
+          "p95_ms": 4291.437237034552
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 4207.573621533811,
+          "p95_ms": 4592.6429090905
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 4169.3064195569605,
+          "p95_ms": 4295.601291407365
+        }
+      ]
+    },
+    {
+      "concurrency": 8,
+      "successful_requests": 24,
+      "queue_rejections": 46,
+      "wall_seconds": 25.045129960170016,
+      "requests_per_second": 0.9582701322839164,
+      "p50_ms": 4387.240025913343,
+      "p95_ms": 21593.645109701894,
+      "peak_allocated_mib": 11260.47412109375,
+      "peak_reserved_mib": 14432.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 4358.536171494052,
+          "p95_ms": 10958.426097850304
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 3528.8807295728475,
+          "p95_ms": 4958.069200569298
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 7195.025509456173,
+          "p95_ms": 24292.632287426386
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-04",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "quantization": "nf4",
+  "input_tokens": 16384,
+  "questions": 3,
+  "batch_size": 4,
+  "status": "timed_out",
+  "timeout_seconds": 280,
+  "observed_device_memory_mib": 32139,
+  "device_total_memory_mib": 32607,
+  "observation": "Device-wide nvidia-smi snapshot during the run, including other GPU memory. The experiment emitted completed batch-one and batch-two rows, then failed to complete batch four before the process timeout. No batch-four throughput or PyTorch peak-memory measurement is available."
+}
