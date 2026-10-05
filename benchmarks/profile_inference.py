@@ -16,6 +16,7 @@ import torch
 from torch.profiler import ProfilerActivity, profile
 
 from benchmarks.benchmark_http import make_payload
+from clef_flash_server import server as server_module
 from clef_flash_server.schema import DecisionRequest
 from clef_flash_server.server import Engine, Settings
 
@@ -108,11 +109,7 @@ def benchmark(arguments: argparse.Namespace) -> None:
         "quantization": arguments.quantization,
         "model_directory": arguments.model_path.name,
         "server_sha256": hashlib.sha256(
-            Path(__file__)
-            .resolve()
-            .parents[1]
-            .joinpath("clef_flash_server/server.py")
-            .read_bytes()
+            Path(server_module.__file__).read_bytes()
         ).hexdigest(),
         "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions. Stage boundaries synchronize CUDA, so these timings isolate costs and do not measure HTTP throughput. Operator totals include child operations and must not be added together.",
         "completed": False,

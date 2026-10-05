@@ -1,0 +1,416 @@
+{
+  "date": "2026-10-05T05:55:29.339121+00:00",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "quantization": "nf4",
+  "model_directory": "clef-flash",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions. Stage boundaries synchronize CUDA, so these timings isolate costs and do not measure HTTP throughput. Operator totals include child operations and must not be added together.",
+  "completed": true,
+  "measurements": [
+    {
+      "input_tokens": 512,
+      "batch_size": 1,
+      "median_stages": {
+        "encode_ms": 1.6414360143244267,
+        "collate_ms": 0.16496298485435545,
+        "backbone_ms": 157.52961300313473,
+        "head_ms": 4.218426998704672,
+        "readback_ms": 0.0924119958654046
+      },
+      "peak_reserved_mib": 7962.0,
+      "operators": [
+        {
+          "name": "bitsandbytes::gemm_4bit",
+          "calls": 248,
+          "cpu_total_ms": 28.21865199999998,
+          "cuda_total_ms": 136.66504300000017
+        },
+        {
+          "name": "aten::linear",
+          "calls": 306,
+          "cpu_total_ms": 10.65571400000023,
+          "cuda_total_ms": 113.70584699999964
+        },
+        {
+          "name": "aten::matmul",
+          "calls": 267,
+          "cpu_total_ms": 8.741025999999946,
+          "cuda_total_ms": 112.97537199999982
+        },
+        {
+          "name": "aten::mm",
+          "calls": 260,
+          "cpu_total_ms": 7.2116089999999815,
+          "cuda_total_ms": 112.9501869999998
+        },
+        {
+          "name": "aten::mul",
+          "calls": 278,
+          "cpu_total_ms": 7.142441000000037,
+          "cuda_total_ms": 4.929986999999864
+        },
+        {
+          "name": "aten::copy_",
+          "calls": 404,
+          "cpu_total_ms": 5.385015999999965,
+          "cuda_total_ms": 4.022920999999917
+        },
+        {
+          "name": "aten::to",
+          "calls": 914,
+          "cpu_total_ms": 6.331743000000249,
+          "cuda_total_ms": 2.894798999999972
+        },
+        {
+          "name": "aten::_to_copy",
+          "calls": 303,
+          "cpu_total_ms": 5.925225999999996,
+          "cuda_total_ms": 2.894798999999972
+        },
+        {
+          "name": "aten::add",
+          "calls": 549,
+          "cpu_total_ms": 7.144241000000026,
+          "cuda_total_ms": 2.375888999999781
+        },
+        {
+          "name": "aten::pow",
+          "calls": 81,
+          "cpu_total_ms": 2.889537999999963,
+          "cuda_total_ms": 1.702715999999999
+        },
+        {
+          "name": "aten::mean",
+          "calls": 98,
+          "cpu_total_ms": 1.176096000000004,
+          "cuda_total_ms": 1.296380999999902
+        },
+        {
+          "name": "aten::clone",
+          "calls": 98,
+          "cpu_total_ms": 1.4723479999999827,
+          "cuda_total_ms": 1.1234509999999445
+        },
+        {
+          "name": "aten::type_as",
+          "calls": 81,
+          "cpu_total_ms": 1.071794999999991,
+          "cuda_total_ms": 1.1085919999999614
+        },
+        {
+          "name": "aten::silu",
+          "calls": 32,
+          "cpu_total_ms": 0.3925459999999903,
+          "cuda_total_ms": 0.9613620000000146
+        },
+        {
+          "name": "aten::addmm",
+          "calls": 46,
+          "cpu_total_ms": 0.9953700000001409,
+          "cuda_total_ms": 0.7556599999998289
+        },
+        {
+          "name": "aten::scaled_dot_product_attention",
+          "calls": 18,
+          "cpu_total_ms": 0.7967140000000181,
+          "cuda_total_ms": 0.7236929999999265
+        },
+        {
+          "name": "aten::_scaled_dot_product_flash_attention",
+          "calls": 18,
+          "cpu_total_ms": 0.6913110000000088,
+          "cuda_total_ms": 0.7236929999999265
+        },
+        {
+          "name": "aten::_flash_attention_forward",
+          "calls": 18,
+          "cpu_total_ms": 0.5658510000000387,
+          "cuda_total_ms": 0.7236929999999265
+        },
+        {
+          "name": "aten::repeat_interleave",
+          "calls": 48,
+          "cpu_total_ms": 0.9565170000000025,
+          "cuda_total_ms": 0.5572940000000526
+        },
+        {
+          "name": "DaoAILab::_causal_conv1d_fwd_cpp",
+          "calls": 24,
+          "cpu_total_ms": 1.2638119999999944,
+          "cuda_total_ms": 0.5001709999999998
+        }
+      ]
+    },
+    {
+      "input_tokens": 4096,
+      "batch_size": 1,
+      "median_stages": {
+        "encode_ms": 6.051264994312078,
+        "collate_ms": 0.6178799958433956,
+        "backbone_ms": 981.9702410022728,
+        "head_ms": 5.881671997485682,
+        "readback_ms": 0.12158197932876647
+      },
+      "peak_reserved_mib": 8362.0,
+      "operators": [
+        {
+          "name": "bitsandbytes::gemm_4bit",
+          "calls": 248,
+          "cpu_total_ms": 240.1209890000005,
+          "cuda_total_ms": 1003.6706420000011
+        },
+        {
+          "name": "aten::linear",
+          "calls": 306,
+          "cpu_total_ms": 56.14291999999997,
+          "cuda_total_ms": 975.1511200000002
+        },
+        {
+          "name": "aten::matmul",
+          "calls": 267,
+          "cpu_total_ms": 54.26482699999984,
+          "cuda_total_ms": 972.7714640000005
+        },
+        {
+          "name": "aten::mm",
+          "calls": 260,
+          "cpu_total_ms": 52.92513800000005,
+          "cuda_total_ms": 972.7450010000003
+        },
+        {
+          "name": "aten::mul",
+          "calls": 278,
+          "cpu_total_ms": 13.82193999999957,
+          "cuda_total_ms": 45.555023999998944
+        },
+        {
+          "name": "aten::copy_",
+          "calls": 404,
+          "cpu_total_ms": 16.03006199999999,
+          "cuda_total_ms": 30.675392000001267
+        },
+        {
+          "name": "aten::scaled_dot_product_attention",
+          "calls": 18,
+          "cpu_total_ms": 1.3336929999999574,
+          "cuda_total_ms": 30.423606000000074
+        },
+        {
+          "name": "aten::_scaled_dot_product_flash_attention",
+          "calls": 18,
+          "cpu_total_ms": 1.225751000000013,
+          "cuda_total_ms": 30.423606000000074
+        },
+        {
+          "name": "aten::_flash_attention_forward",
+          "calls": 18,
+          "cpu_total_ms": 1.1060109999997185,
+          "cuda_total_ms": 30.423606000000074
+        },
+        {
+          "name": "aten::to",
+          "calls": 914,
+          "cpu_total_ms": 15.128570999998864,
+          "cuda_total_ms": 22.1369920000007
+        },
+        {
+          "name": "aten::_to_copy",
+          "calls": 303,
+          "cpu_total_ms": 14.745599000000242,
+          "cuda_total_ms": 22.1369920000007
+        },
+        {
+          "name": "aten::pow",
+          "calls": 81,
+          "cpu_total_ms": 2.781471000000256,
+          "cuda_total_ms": 14.342349000000162
+        },
+        {
+          "name": "aten::type_as",
+          "calls": 81,
+          "cpu_total_ms": 6.7101560000000005,
+          "cuda_total_ms": 11.979044999999966
+        },
+        {
+          "name": "aten::add",
+          "calls": 549,
+          "cpu_total_ms": 120.74163400000029,
+          "cuda_total_ms": 10.463531999999352
+        },
+        {
+          "name": "aten::mean",
+          "calls": 98,
+          "cpu_total_ms": 81.75086899999992,
+          "cuda_total_ms": 9.042602000000766
+        },
+        {
+          "name": "aten::silu",
+          "calls": 32,
+          "cpu_total_ms": 0.8574740000001048,
+          "cuda_total_ms": 8.91216499999987
+        },
+        {
+          "name": "aten::clone",
+          "calls": 98,
+          "cpu_total_ms": 3.156938000000089,
+          "cuda_total_ms": 8.533089000000563
+        },
+        {
+          "name": "aten::repeat_interleave",
+          "calls": 48,
+          "cpu_total_ms": 2.3042759999998954,
+          "cuda_total_ms": 4.41016500000039
+        },
+        {
+          "name": "DaoAILab::_causal_conv1d_fwd_cpp",
+          "calls": 24,
+          "cpu_total_ms": 1.2391710000000735,
+          "cuda_total_ms": 4.067725999999959
+        },
+        {
+          "name": "aten::contiguous",
+          "calls": 36,
+          "cpu_total_ms": 0.9477219999999565,
+          "cuda_total_ms": 3.423103000000396
+        }
+      ]
+    },
+    {
+      "input_tokens": 16384,
+      "batch_size": 1,
+      "median_stages": {
+        "encode_ms": 22.01112301554531,
+        "collate_ms": 2.163144003134221,
+        "backbone_ms": 3961.0021260159556,
+        "head_ms": 12.260201998287812,
+        "readback_ms": 0.1309220097027719
+      },
+      "peak_reserved_mib": 10142.0,
+      "operators": [
+        {
+          "name": "bitsandbytes::gemm_4bit",
+          "calls": 248,
+          "cpu_total_ms": 839.5703090000015,
+          "cuda_total_ms": 4239.4182270000065
+        },
+        {
+          "name": "aten::linear",
+          "calls": 306,
+          "cpu_total_ms": 566.709709000002,
+          "cuda_total_ms": 4207.719474000001
+        },
+        {
+          "name": "aten::matmul",
+          "calls": 267,
+          "cpu_total_ms": 564.8239250000009,
+          "cuda_total_ms": 4201.014587000002
+        },
+        {
+          "name": "aten::mm",
+          "calls": 260,
+          "cpu_total_ms": 563.4452979999985,
+          "cuda_total_ms": 4200.982042000001
+        },
+        {
+          "name": "aten::scaled_dot_product_attention",
+          "calls": 18,
+          "cpu_total_ms": 113.61276200000009,
+          "cuda_total_ms": 460.70935000000065
+        },
+        {
+          "name": "aten::_scaled_dot_product_flash_attention",
+          "calls": 18,
+          "cpu_total_ms": 113.50847099999918,
+          "cuda_total_ms": 460.70935000000065
+        },
+        {
+          "name": "aten::_flash_attention_forward",
+          "calls": 18,
+          "cpu_total_ms": 113.3916390000011,
+          "cuda_total_ms": 460.70935000000065
+        },
+        {
+          "name": "aten::mul",
+          "calls": 278,
+          "cpu_total_ms": 334.53159099999885,
+          "cuda_total_ms": 183.84886800000157
+        },
+        {
+          "name": "aten::copy_",
+          "calls": 404,
+          "cpu_total_ms": 355.40140800000074,
+          "cuda_total_ms": 128.65393199999903
+        },
+        {
+          "name": "aten::to",
+          "calls": 914,
+          "cpu_total_ms": 228.9966069999973,
+          "cuda_total_ms": 86.20265299999798
+        },
+        {
+          "name": "aten::_to_copy",
+          "calls": 303,
+          "cpu_total_ms": 228.60332900000083,
+          "cuda_total_ms": 86.20265299999798
+        },
+        {
+          "name": "aten::pow",
+          "calls": 81,
+          "cpu_total_ms": 15.293685999999445,
+          "cuda_total_ms": 51.66563299999996
+        },
+        {
+          "name": "aten::type_as",
+          "calls": 81,
+          "cpu_total_ms": 12.0963830000012,
+          "cuda_total_ms": 45.28314299999917
+        },
+        {
+          "name": "aten::add",
+          "calls": 549,
+          "cpu_total_ms": 573.2683269999981,
+          "cuda_total_ms": 42.671729000000425
+        },
+        {
+          "name": "aten::clone",
+          "calls": 98,
+          "cpu_total_ms": 128.74992899999967,
+          "cuda_total_ms": 42.44382300000107
+        },
+        {
+          "name": "aten::silu",
+          "calls": 32,
+          "cpu_total_ms": 3.422800000000384,
+          "cuda_total_ms": 35.38011999999937
+        },
+        {
+          "name": "aten::mean",
+          "calls": 98,
+          "cpu_total_ms": 110.21383499999996,
+          "cuda_total_ms": 34.26459500000099
+        },
+        {
+          "name": "aten::repeat_interleave",
+          "calls": 48,
+          "cpu_total_ms": 115.14115599999919,
+          "cuda_total_ms": 21.473947000001285
+        },
+        {
+          "name": "DaoAILab::_causal_conv1d_fwd_cpp",
+          "calls": 24,
+          "cpu_total_ms": 3.1814899999997714,
+          "cuda_total_ms": 21.02149499999903
+        },
+        {
+          "name": "aten::contiguous",
+          "calls": 36,
+          "cpu_total_ms": 13.720090999999782,
+          "cuda_total_ms": 18.25546099999852
+        }
+      ]
+    }
+  ]
+}

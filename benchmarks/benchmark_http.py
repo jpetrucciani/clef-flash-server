@@ -22,6 +22,7 @@ import torch
 import uvicorn
 from transformers import AutoTokenizer
 
+from clef_flash_server import server as server_module
 from clef_flash_server.schema import DecisionRequest
 from clef_flash_server.server import Settings, create_app
 
@@ -272,11 +273,7 @@ def benchmark(arguments: argparse.Namespace) -> None:
         "torch_threads": torch.get_num_threads(),
         "model_directory": arguments.model_path.name,
         "server_sha256": hashlib.sha256(
-            Path(__file__)
-            .resolve()
-            .parents[1]
-            .joinpath("clef_flash_server/server.py")
-            .read_bytes()
+            Path(server_module.__file__).read_bytes()
         ).hexdigest(),
         "quantization": arguments.quantization,
         "input_tokens": lengths[0] if len(lengths) == 1 else lengths,

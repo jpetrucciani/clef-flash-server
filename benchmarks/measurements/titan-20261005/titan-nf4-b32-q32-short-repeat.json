@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-05T05:54:51.951598+00:00",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 16,
+  "model_directory": "clef-flash",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "quantization": "nf4",
+  "input_tokens": 512,
+  "questions": 3,
+  "warmup_requests": 4,
+  "concurrent_warmup_requests_per_client": 4,
+  "max_queued_requests": 32,
+  "max_batch_size": 32,
+  "max_batch_tokens": 16384,
+  "batch_wait_ms": 5.0,
+  "fast_kernels": true,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "client_location": "HTTP clients and the real Uvicorn server run in separate threads in one process on localhost.",
+  "measurements": [
+    {
+      "concurrency": 16,
+      "successful_requests": 128,
+      "queue_rejections": 0,
+      "wall_seconds": 16.466689891007263,
+      "requests_per_second": 7.773268388925145,
+      "p50_ms": 1982.1483620034996,
+      "p95_ms": 3156.350793290767,
+      "peak_allocated_mib": 8885.76611328125,
+      "peak_reserved_mib": 8964.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 128,
+          "p50_ms": 1982.1483620034996,
+          "p95_ms": 3156.350793290767
+        }
+      ],
+      "gpu_batches": 9,
+      "largest_batch": 16
+    },
+    {
+      "concurrency": 32,
+      "successful_requests": 128,
+      "queue_rejections": 0,
+      "wall_seconds": 25.489070842973888,
+      "requests_per_second": 5.021760141377748,
+      "p50_ms": 4002.8649234882323,
+      "p95_ms": 13470.956720611139,
+      "peak_allocated_mib": 9026.71923828125,
+      "peak_reserved_mib": 9444.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 128,
+          "p50_ms": 4002.8649234882323,
+          "p95_ms": 13470.956720611139
+        }
+      ],
+      "gpu_batches": 8,
+      "largest_batch": 23
+    }
+  ]
+}

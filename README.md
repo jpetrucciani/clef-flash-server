@@ -312,6 +312,51 @@ clients share the server's process and run in separate threads. HTTP latency inc
 queue waiting and retries that honor `Retry-After`; batch timings exclude HTTP. These
 are local performance measurements, not accuracy or production latency guarantees.
 
+### Titan RTX 3090, October 5, 2026
+
+Titan's installed `0.1.0` package was measured on GPU 1 with the same model revision
+and three typed questions. The ordinary service was paused during isolated trials;
+TTS and Whisper remained on GPU 0. The mixed sequence was 50% 512 tokens, 25% 4,096
+tokens, and 25% 16,384 tokens. These trials completed 2,016 measured HTTP requests,
+plus warmups, across batch limits, concurrency levels, token budgets and precisions.
+
+| Workload                 | Clients | Batch/queue limits | Requests/sec | p95 latency | Peak reserved VRAM |
+| ------------------------ | ------- | ------------------ | ------------ | ----------- | ------------------ |
+| 512 tokens               | 4       | 4/4                | 7.36         | 0.55 s      | 7.89 GiB           |
+| 512 tokens               | 8       | 8/8                | 7.66         | 1.05 s      | 8.19 GiB           |
+| 512 tokens               | 16      | 16/16              | 8.00         | 2.01 s      | 8.75 GiB           |
+| 16,384 tokens            | 1       | 8/8                | 0.249        | 4.05 s      | 9.90 GiB           |
+| Mixed, 64-request repeat | 4       | 4/4                | 0.745        | 6.41 s      | 9.90 GiB           |
+| Mixed, 64-request repeat | 2       | 8/8                | 0.738        | 4.30 s      | 9.90 GiB           |
+| Mixed, 64-request repeat | 4       | 8/8                | 0.729        | 6.55 s      | 9.90 GiB           |
+
+These warmed text workloads approach 4,000 input tokens/sec. For mixed traffic,
+start with two concurrent requests: the longer repeat retained almost the same
+throughput with lower latency than four clients. Larger batches provide a modest
+gain for short-only bulk work, rather than a material mixed-workload improvement.
+The 32-client short-input sweeps regressed to 3.70 and 5.02 requests/sec, including
+a repeat with four warmup requests per client; their variable batch sizes and large
+latency spikes make them unsuitable as a throughput recommendation.
+
+Keep NF4 and the 16,384 padded-token budget for mixed inputs. Doubling that budget
+produced 0.748 requests/sec at eight clients while raising peak reserved memory to
+12.15 GiB, versus 0.750 requests/sec and 9.91 GiB with the smaller budget. BF16
+produced 0.750 requests/sec at four clients while reserving 19.98 GiB. Eight queue
+slots eliminated the rejections seen with eight clients and a four-slot queue, but
+added concurrency still increased latency substantially.
+
+The stage profile measured about 3,961 ms in the backbone for 16,384 tokens, compared
+with 22 ms encoding and 12 ms in the head; GPU matrix operations dominate. Sampled
+GPU utilization reached 96–100%, at roughly 345–350 W, without recorded thermal
+slowdown. PyTorch reserved-memory peaks in the table exclude driver/context overhead.
+
+The original four-record/four-slot systemd service was restored. A separate localhost
+client process then measured 0.753 requests/sec and 6.35 s p95 over 24 mixed requests,
+with no rejections and no queued requests remaining. No serving settings were changed
+permanently. These synthetic trials do not establish accuracy or all-day capacity.
+Raw results, model identity and measurement boundaries are in
+[the Titan reports](benchmarks/measurements/titan-20261005).
+
 ## Packaging a release
 
 The same `nix/package.nix` builds the standalone executable package and is imported by cfg:

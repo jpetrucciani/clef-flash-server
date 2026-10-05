@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-05T05:48:09.036012+00:00",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 16,
+  "model_directory": "clef-flash",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "quantization": "bf16",
+  "input_tokens": [512, 4096, 512, 16384],
+  "questions": 3,
+  "warmup_requests": 1,
+  "concurrent_warmup_requests_per_client": 1,
+  "max_queued_requests": 8,
+  "max_batch_size": 8,
+  "max_batch_tokens": 16384,
+  "batch_wait_ms": 5.0,
+  "fast_kernels": true,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "client_location": "HTTP clients and the real Uvicorn server run in separate threads in one process on localhost.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 31.9107833430171,
+      "requests_per_second": 0.7520968614909235,
+      "p50_ms": 568.5948590107728,
+      "p95_ms": 4036.9665616904963,
+      "peak_allocated_mib": 20443.61865234375,
+      "peak_reserved_mib": 20462.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 148.97432798170485,
+          "p95_ms": 149.5708023532643
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 993.7068080034805,
+          "p95_ms": 995.5137367360294
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 4030.2801934885792,
+          "p95_ms": 4038.5931184937363
+        }
+      ],
+      "gpu_batches": 24,
+      "largest_batch": 1
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 31.997822116012685,
+      "requests_per_second": 0.7500510476301969,
+      "p50_ms": 5319.966247014236,
+      "p95_ms": 6350.203386411886,
+      "peak_allocated_mib": 20443.61865234375,
+      "peak_reserved_mib": 20462.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 4323.480467981426,
+          "p95_ms": 5339.435492244957
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 6328.421268000966,
+          "p95_ms": 6367.508589253703
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 5326.015993501642,
+          "p95_ms": 5355.190504240454
+        }
+      ],
+      "gpu_batches": 18,
+      "largest_batch": 2
+    },
+    {
+      "concurrency": 8,
+      "successful_requests": 24,
+      "queue_rejections": 0,
+      "wall_seconds": 32.04213672300102,
+      "requests_per_second": 0.749013719262109,
+      "p50_ms": 10651.094124506926,
+      "p95_ms": 16099.254809501865,
+      "peak_allocated_mib": 20443.61865234375,
+      "peak_reserved_mib": 20464.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 512,
+          "successful_requests": 12,
+          "p50_ms": 6650.597719984944,
+          "p95_ms": 10671.101052242739
+        },
+        {
+          "input_tokens": 4096,
+          "successful_requests": 6,
+          "p50_ms": 10674.709487997461,
+          "p95_ms": 12641.02722676762
+        },
+        {
+          "input_tokens": 16384,
+          "successful_requests": 6,
+          "p50_ms": 10696.361587484716,
+          "p95_ms": 16716.827295240364
+        }
+      ],
+      "gpu_batches": 12,
+      "largest_batch": 4
+    }
+  ]
+}

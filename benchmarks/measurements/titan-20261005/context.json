@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-05",
+  "host": "titan",
+  "gpu_index": 1,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "gpu_total_mib": 24576,
+  "cpu": "AMD Ryzen 9 5950X, 16 cores, 32 threads",
+  "nvidia_driver": "595.104.02",
+  "runtime_package": "/nix/store/wmkl8kgafp9grp9694497i2zfv5zw3av-clef-flash-server-0.1.0",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "model_revision": "17f0b0ad64efb65d273590632833508766b2aae6",
+  "model_revision_evidence": "The downloaded config.json and joint_head.safetensors metadata both identify this revision",
+  "model_config_sha256": "66f87f6fb2616b46604daf2a9c67ddc87938296d07156efa34d59b5be49e3238",
+  "joint_head_sha256": "19cdcec8c81dc9212be320fff47462ab342fbc1278be4368fb3da71241cf5ba0",
+  "model_path": "/var/lib/clef-flash/models/clef-flash",
+  "original_service": {
+    "port": 8015,
+    "quantization": "nf4",
+    "max_input_tokens": 16384,
+    "max_batch_size": 4,
+    "max_queued_requests": 4,
+    "max_batch_tokens": 16384,
+    "batch_wait_ms": 5
+  },
+  "isolation": "The ordinary clef-flash service was stopped for standalone trials. Each trial used one model on GPU 1. TTS and Whisper remained on GPU 0. No GPU clocks, power limits or ownership were changed.",
+  "runtime_environment": {
+    "CUDA_VISIBLE_DEVICES": "1",
+    "HF_HUB_OFFLINE": "1",
+    "HOME": "/var/lib/clef-flash",
+    "XDG_CACHE_HOME": "/var/cache/clef-flash",
+    "PYTORCH_ALLOC_CONF": "expandable_segments:True",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "workload": "Synthetic repeated neutral text with 3 mixed choice, score and noul questions. The mixed input sequence is 512, 4096, 512, 16384 tokens, including the schema.",
+  "client_protocol": "Closed-loop clients. HTTP 429 responses are retried according to Retry-After; retries count toward latency and total wall time. Returned input token counts are checked against the generated payload.",
+  "warmup_scope": "Each input length and concurrency is warmed before timing. Dynamic batch sizes can still encounter new kernel specializations, especially with 32 clients; the 32-client trial was repeated with four warmup requests per client.",
+  "memory_scope": "HTTP reports use peak PyTorch allocated and reserved CUDA memory, reset for each measured concurrency. They do not include all driver and CUDA context overhead. The restored live-service report labels its health-derived process-lifetime peaks separately.",
+  "host_observations": "GPU 1 repeatedly reached 96-100% utilization and approximately 345-350 W. Sampled peak temperature was 83 C. NVIDIA reported power capping, with no hardware or software thermal slowdown and zero thermal-slowdown counter values.",
+  "command_bound_seconds": 280,
+  "proof_boundary": "These are local synthetic workload measurements and short sustained repeats, not an accuracy evaluation or an all-day production capacity guarantee. Standalone HTTP clients share a process with their test server; the final live check uses a separate client process against systemd."
+}

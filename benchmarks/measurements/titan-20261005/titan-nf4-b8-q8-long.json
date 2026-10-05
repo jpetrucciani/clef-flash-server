@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-05T05:53:15.091299+00:00",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "python": "3.13.15",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "torch_threads": 16,
+  "model_directory": "clef-flash",
+  "server_sha256": "c54b661e17f4184accc11a3498a8ade36a7dcf8af295a0a184919f5e977ca856",
+  "quantization": "nf4",
+  "input_tokens": 16384,
+  "questions": 3,
+  "warmup_requests": 1,
+  "concurrent_warmup_requests_per_client": 1,
+  "max_queued_requests": 8,
+  "max_batch_size": 8,
+  "max_batch_tokens": 16384,
+  "batch_wait_ms": 5.0,
+  "fast_kernels": true,
+  "workload": "Synthetic repeated neutral text with mixed choice/score/noul questions; closed-loop HTTP clients; 429 retries honor Retry-After and count toward latency.",
+  "client_location": "HTTP clients and the real Uvicorn server run in separate threads in one process on localhost.",
+  "measurements": [
+    {
+      "concurrency": 1,
+      "successful_requests": 8,
+      "queue_rejections": 0,
+      "wall_seconds": 32.17777510199812,
+      "requests_per_second": 0.24861880520456583,
+      "p50_ms": 4022.8229644999374,
+      "p95_ms": 4046.814949797408,
+      "peak_allocated_mib": 10013.51220703125,
+      "peak_reserved_mib": 10142.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 16384,
+          "successful_requests": 8,
+          "p50_ms": 4022.8229644999374,
+          "p95_ms": 4046.814949797408
+        }
+      ],
+      "gpu_batches": 8,
+      "largest_batch": 1
+    },
+    {
+      "concurrency": 2,
+      "successful_requests": 8,
+      "queue_rejections": 0,
+      "wall_seconds": 32.56311230600113,
+      "requests_per_second": 0.2456767622462691,
+      "p50_ms": 8139.065200492041,
+      "p95_ms": 8145.970780652714,
+      "peak_allocated_mib": 10013.51220703125,
+      "peak_reserved_mib": 10142.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 16384,
+          "successful_requests": 8,
+          "p50_ms": 8139.065200492041,
+          "p95_ms": 8145.970780652714
+        }
+      ],
+      "gpu_batches": 8,
+      "largest_batch": 1
+    },
+    {
+      "concurrency": 4,
+      "successful_requests": 8,
+      "queue_rejections": 0,
+      "wall_seconds": 32.96659632897354,
+      "requests_per_second": 0.24266988075347637,
+      "p50_ms": 16457.524179495522,
+      "p95_ms": 16491.699216718553,
+      "peak_allocated_mib": 10013.51220703125,
+      "peak_reserved_mib": 10142.0,
+      "by_input_tokens": [
+        {
+          "input_tokens": 16384,
+          "successful_requests": 8,
+          "p50_ms": 16457.524179495522,
+          "p95_ms": 16491.699216718553
+        }
+      ],
+      "gpu_batches": 8,
+      "largest_batch": 1
+    }
+  ]
+}
