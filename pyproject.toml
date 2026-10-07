@@ -1,11 +1,12 @@
 [project]
 name = "clef-flash-server"
-version = "0.1.0"
+version = "0.1.1"
 description = "Cloudflare Clef-Flash SystemOne decision server"
 requires-python = ">=3.12,<3.15,!=3.14.1"
 dependencies = [
   "accelerate==1.15.0",
   "bitsandbytes==0.50.2",
+  "blake3==1.0.10",
   "causal-conv1d==1.7.0",
   "fastapi>=0.136,<1",
   "flash-linear-attention==0.5.2",

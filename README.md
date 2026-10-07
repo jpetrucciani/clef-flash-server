@@ -85,6 +85,21 @@ The server listens on `127.0.0.1:8015` by default. `GET /health` reports readine
 quantization, GPU identity, queue length, fast-kernel availability, batch counts, and
 PyTorch memory counters.
 
+GET /v1/metadata?model=clef-flash provides fresh, non-cacheable identity discovery.
+It accepts the same two model aliases as inference. Verified Nix packages report
+the full loaded model identity in metadata and every inference response's model
+field. The identity binds the pinned release files, actual tokenizer and encoder,
+loaded BF16/NF4 precision, immutable dependency roots, server code, batching
+settings, CUDA driver/library content, GPU and kernel bindings.
+
+At startup, the server checks all 13 runtime files against the pinned Hub manifest
+before and after loading. It also compares the loaded tokenizer with tokenizer.json
+and computes its BLAKE3 digest. This adds startup file reads. Edited releases,
+mutable development sources or an unverifiable runtime retain alias responses,
+return 503 from metadata and expose the reason in health's identity_error field.
+Clients must disable caching in that case. This metadata implementation has CPU
+and package validation; live CUDA identity qualification is still pending.
+
 ```sh
 curl http://127.0.0.1:8015/v1/systemone \
   -H 'Content-Type: application/json' \

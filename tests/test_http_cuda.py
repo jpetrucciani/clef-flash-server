@@ -46,7 +46,7 @@ class HttpCudaTests(unittest.TestCase):
 
         cls.thread = threading.Thread(target=lambda: asyncio.run(serve()), daemon=True)
         cls.thread.start()
-        deadline = time.monotonic() + 90
+        deadline = time.monotonic() + 180
         while not cls.server.started:
             if not cls.thread.is_alive() or time.monotonic() >= deadline:
                 cls.server.should_exit = True
@@ -106,7 +106,8 @@ class HttpCudaTests(unittest.TestCase):
         )
         self.assertEqual(status, 200)
         for record, response in zip(records, responses, strict=True):
-            self.assertEqual(response["model"], record["model"])
+            expected_model = self.health()["full_model_identity"] or record["model"]
+            self.assertEqual(response["model"], expected_model)
             self.assertEqual(set(response["answers"]), set(record["questions"]))
             encoded = cloudflare_clef_release.encode_record(
                 self.tokenizer, record, max_length=2**31 - 1
@@ -117,6 +118,43 @@ class HttpCudaTests(unittest.TestCase):
         self.assertEqual(after["completed_batches"] - before, 1)
         self.assertEqual(after["largest_batch"], 4)
         self.assertEqual(after["queued_requests"], 0)
+
+    def test_fresh_metadata_matches_actual_inference_or_explicitly_refuses_identity(
+        self,
+    ) -> None:
+        before = self.health()
+        for alias in ("clef-flash", "Cloudflare/clef-flash"):
+            request = Request(self.base_url + "/v1/metadata?model=" + alias)
+            if before["full_model_identity"] is None:
+                with self.assertRaises(HTTPError) as rejected:
+                    urlopen(request, timeout=5)
+                with rejected.exception as response:
+                    self.assertEqual(response.code, 503)
+                    self.assertEqual(response.headers["Cache-Control"], "no-store")
+                self.assertTrue(before["identity_error"])
+                continue
+            with urlopen(request, timeout=5) as response:
+                self.assertEqual(response.headers["Cache-Control"], "no-store")
+                document = json.load(response)
+            self.assertEqual(document["schema_version"], 1)
+            self.assertEqual(document["requested_model"], alias)
+            self.assertEqual(document["model"], before["full_model_identity"])
+            self.assertTrue(document["encoder_identity"].startswith("clef-v1@"))
+            for key in ("release_fingerprint", "build_fingerprint"):
+                self.assertRegex(document[key], "^[0-9a-f]{64}$")
+            payload = json.loads(self.payload)
+            payload["model"] = alias
+            status, actual = self.post(json.dumps(payload).encode())
+            self.assertEqual(status, 200)
+            assert isinstance(actual, dict)
+            self.assertEqual(actual["model"], document["model"])
+        if os.environ.get("CLEF_TEST_REQUIRE_IDENTITY") == "1":
+            self.assertIsNotNone(before["full_model_identity"])
+        request = Request(self.base_url + "/v1/metadata?model=unknown")
+        with self.assertRaises(HTTPError) as rejected:
+            urlopen(request, timeout=5)
+        with rejected.exception as response:
+            self.assertEqual(response.code, 422)
 
     def test_separate_http_requests_batch_and_reject_saturation(self) -> None:
         gate = threading.Barrier(12)

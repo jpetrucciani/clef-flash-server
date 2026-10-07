@@ -16,11 +16,12 @@ if TYPE_CHECKING:
 
 import torch
 import uvicorn
-from fastapi import Body, FastAPI, HTTPException, Request
+from fastapi import Body, FastAPI, HTTPException, Query, Request
 from pydantic import JsonValue
 from starlette.responses import JSONResponse, Response
 from transformers import BitsAndBytesConfig
 
+from clef_flash_server.identity import ModelAlias, ModelIdentity, Release
 from clef_flash_server.schema import DecisionRequest
 
 LOGGER = logging.getLogger(__name__)
@@ -112,6 +113,14 @@ class Engine:
             if settings.quantization == "nf4"
             else None
         )
+        self.identity: ModelIdentity | None = None
+        self.identity_error: str | None = None
+        release: Release | None = None
+        try:
+            release = Release.capture(settings.model_path)
+        except (OSError, ValueError) as error:
+            self.identity_error = str(error)
+            LOGGER.warning("authoritative identity unavailable: %s", error)
         self.model, self.processor = joint_schema_model.load_release_model(
             settings.model_path,
             device="cuda:0",
@@ -131,6 +140,15 @@ class Engine:
         self.completed_requests = 0
         self.largest_batch = 0
         torch.cuda.synchronize()
+        if release is not None:
+            from clef_flash_server.runtime_identity import capture
+
+            try:
+                release.check_unchanged(settings.model_path)
+                self.identity = capture(self, release)
+            except (OSError, ValueError, TypeError) as error:
+                self.identity_error = str(error)
+                LOGGER.warning("authoritative identity unavailable: %s", error)
 
     def prepare(self, request: DecisionRequest) -> PreparedRequest:
         payload = request.model_dump()
@@ -186,7 +204,9 @@ class Engine:
             }
             responses.append(
                 {
-                    "model": item.request.model,
+                    "model": self.identity.model
+                    if self.identity
+                    else item.request.model,
                     "answers": answers,
                     "usage": {"input_tokens": item.input_tokens, "output_tokens": 0},
                 }
@@ -345,7 +365,25 @@ def create_app(settings: Settings) -> FastAPI:
             "cuda_device": torch.cuda.get_device_name(0),
             "cuda_allocated_bytes": torch.cuda.memory_allocated(0),
             "cuda_peak_reserved_bytes": torch.cuda.max_memory_reserved(0),
+            "full_model_identity": engine.identity.model
+            if engine and engine.identity
+            else None,
+            "identity_error": engine.identity_error if engine else "model is loading",
         }
+
+    @app.get("/v1/metadata")
+    async def metadata(
+        response: Response,
+        model: Annotated[ModelAlias, Query()] = "clef-flash",
+    ) -> dict[str, JsonValue]:
+        response.headers["Cache-Control"] = "no-store"
+        if engine is None or engine.identity is None:
+            raise HTTPException(
+                503,
+                "authoritative loaded model identity is unavailable",
+                headers={"Cache-Control": "no-store"},
+            )
+        return {key: value for key, value in engine.identity.document(model).items()}
 
     def admit(
         requests: list[DecisionRequest],
